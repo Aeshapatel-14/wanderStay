@@ -74,14 +74,14 @@ app.use((req,res,next)=>{
   next();
 });
 
-// ✅ ROOT ROUTE
+
 app.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
   app.use("/listings",listingRouter);
   app.use("/listings/:id/reviews",reviewRouter);
-  app.use("/",userRouter);
+  app.use("/users",userRouter);
 
 app.use((req, res, next) => {
   res.status(404).render("error.ejs", { message: "Page Not Found" });

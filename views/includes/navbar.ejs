@@ -18,18 +18,40 @@
 
       <!-- CENTER SEARCH -->
       <div class="mx-auto">
-        <div class="search-bar">
-          <span>Anywhere</span>
-          <span class="divider">|</span>
-          <span>Any week</span>
-          <span class="divider">|</span>
-          <span class="text-muted">Add guests</span>
+      <form action="/listings" method="GET" class="search-bar">
 
-          <button class="search-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </div>
+      <input 
+      type="text" 
+      name="search" 
+      placeholder="Anywhere"
+      class="search-input"
+      />
+
+      <span class="divider">|</span>
+
+      <input 
+      type="text" 
+      placeholder="Any week"
+      onfocus="(this.type='date')"
+      class="search-input"
+      />
+
+    <span class="divider">|</span>
+
+    <input 
+      type="text" 
+      placeholder="Add guests"
+      class="search-input"
+    />
+
+    <button type="submit" class="search-btn">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+  </form>
+</div>
+          
+      
 
       <!-- RIGHT -->
       <div class="d-flex align-items-center gap-3">
@@ -45,17 +67,15 @@
 
           <div class="dropdown-menu-custom">
 
-    <% if(!currUser){ %>
+    <% if(!locals.currUser){ %>
     <a href="/users/login">Login</a>
     <a href="/users/signup">Sign up</a>
     <% } else { %>
     <a href="/users/logout">Logout</a>
     <% } %>
-
-</div>
-        </div>
-
-      </div>
+    </div>
+    </div>
+  </div>
 
     </div>
   </div>

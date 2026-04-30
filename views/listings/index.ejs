@@ -9,67 +9,67 @@
     <p>all</p>
   </a>
 
-  <a href="/listings?category=trending"
-     class="filter <%= category === 'trending' ? 'active' : '' %>">
+  <a href="/listings?category=trending&search=<%= search || '' %>"
+   class="filter <%= category === 'trending' ? 'active' : '' %>">
     <i class="fa-solid fa-fire"></i>
     <p>trending</p>
   </a>
 
-  <a href="/listings?category=rooms"
-     class="filter <%= category === 'rooms' ? 'active' : '' %>">
+  <a href="/listings?category=rooms&search=<%= search || '' %>"
+   class="filter <%= category === 'rooms' ? 'active' : '' %>">
     <i class="fa-solid fa-bed"></i>
     <p>rooms</p>
   </a>
 
-  <a href="/listings?category=iconic-cities"
+   <a href="/listings?category=iconic-cities&search=<%= search || '' %>"
      class="filter <%= category === 'iconic-cities' ? 'active' : '' %>">
     <i class="fa-solid fa-mountain-city"></i>
     <p>iconic Cities</p>
   </a>
 
-  <a href="/listings?category=mountains"
+  <a href="/listings?category=mountains&search=<%= search || '' %>"
      class="filter <%= category === 'mountains' ? 'active' : '' %>">
     <i class="fa-solid fa-mountain"></i>
     <p>mountains</p>
   </a>
 
-  <a href="/listings?category=castles"
+  <a href="/listings?category=castles&search=<%= search || '' %>"
      class="filter <%= category === 'castles' ? 'active' : '' %>">
     <i class="fa-brands fa-fort-awesome"></i>
     <p>castles</p>
   </a>
 
-  <a href="/listings?category=amazing-pools"
+  <a href="/listings?category=amazing-pools&search=<%= search || '' %>"
      class="filter <%= category === 'amazing-pools' ? 'active' : '' %>">
     <i class="fa-solid fa-person-swimming"></i>
     <p>pools</p>
   </a>
 
-  <a href="/listings?category=new"
+  <a href="/listings?category=new&search=<%= search || '' %>"
      class="filter <%= category === 'new' ? 'active' : '' %>">
     <i class="fa-solid fa-key"></i>
     <p>new</p>
   </a>
 
-  <a href="/listings?category=beachfront"
+  <a href="/listings?category=beachfront&search=<%= search || '' %>"
      class="filter <%= category === 'beachfront' ? 'active' : '' %>">
     <i class="fa-solid fa-umbrella-beach"></i>
     <p>beach</p>
   </a>
 
-  <a href="/listings?category=camping"
+  <a href="/listings?category=camping&search=<%= search || '' %>"
      class="filter <%= category === 'camping' ? 'active' : '' %>">
     <i class="fa-solid fa-campground"></i>
     <p>camping</p>
   </a>
 
-  <a href="/listings?category=farms"
+  <a href="/listings?category=farms&search=<%= search || '' %>"
      class="filter <%= category === 'farms' ? 'active' : '' %>">
     <i class="fa-solid fa-cow"></i>
     <p>farms</p>
   </a>
 
-  <a href="/listings?category=arctic"
+  <a href="/listings?category=arctic&search=<%= search || '' %>"
      class="filter <%= category === 'arctic' ? 'active' : '' %>">
     <i class="fa-solid fa-snowflake"></i>
     <p>arctic</p>
@@ -90,7 +90,7 @@
   </div>
 
 </div>
-
+  
   <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 g-4 mt-3">
     
     <% for(let listing of allListings){ %>

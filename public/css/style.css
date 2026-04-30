@@ -228,11 +228,17 @@ text-decoration: underline;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  width: 100px;
+}
+
 .divider {
   color: #ccc;
 }
-
-/* Search Button */
 .search-btn {
   background-color: #fe424d;
   color: white;
@@ -241,7 +247,7 @@ text-decoration: underline;
   padding: 6px 10px;
 }
 
-/* Profile Menu */
+
 .profile-menu {
   display: flex;
   align-items: center;
