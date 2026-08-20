@@ -216,16 +216,19 @@ wanderstay/
 |         Screenshot         |
 |----------------------------|
 
-  * Listings page
-  * Listing details page
-  * Booking section
-  * Booking confirmation
-  * My Bookings
-  * Wishlist
-  * Login / Signup
-  * Mobile responsive view
+  * [WanderStay Home](Screenshots/home.png)
+          
+  * [Listing Details](Screenshots/listing-details1.png)  
+  * [Listing Details](Screenshots/listing-details2.png)
+  * [Listing Details](Screenshots/listing-details3.png)
 
+  * [Booking Confirmation](Screenshots/booking-confirmation.png)
 
+  * [My Bookings](Screenshots/my-bookings.png)
+
+  * [Wishlist](Screenshots/wishlist.png)
+  
+ 
 |----------------------------|
 |        Future plan         |
 |----------------------------|
