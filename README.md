@@ -215,18 +215,21 @@ wanderstay/
 |----------------------------|
 |         Screenshot         |
 |----------------------------|
-
-  * [WanderStay Home](Screenshots/home.png)
+### Home & Listing detail
+  * ![WanderStay Home](Screenshots/home.png)
           
-  * [Listing Details](Screenshots/listing-details1.png)  
-  * [Listing Details](Screenshots/listing-details2.png)
-  * [Listing Details](Screenshots/listing-details3.png)
+  * ![Listing Details](Screenshots/listing-details1.png)  
+  * ![Listing Details](Screenshots/listing-details2.png)
+  * ![Listing Details](Screenshots/listing-details3.png)
 
-  * [Booking Confirmation](Screenshots/booking-confirmation.png)
+### Booking Confirmation
+  * ![Booking Confirmation](Screenshots/booking-confirmation.png)
 
-  * [My Bookings](Screenshots/my-bookings.png)
-
-  * [Wishlist](Screenshots/wishlist.png)
+### My Bookings
+  * ![My Bookings](Screenshots/my-bookings.png)
+    
+### Wishlist
+  * ![Wishlist](Screenshots/wishlist.png)
   
  
 |----------------------------|
