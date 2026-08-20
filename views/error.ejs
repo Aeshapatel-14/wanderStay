@@ -1,9 +1,51 @@
-
-
 <%- layout("/layouts/boilerplate") %>
 
-<div class="container mt-7">
-  <div class="alert alert-danger">
-    <%= message %>
-  </div>
+<div class="container error-page">
+
+    <div class="error-card text-center">
+
+        <div class="error-icon">
+
+            <i class="fa-solid fa-compass"></i>
+
+        </div>
+
+        <h1 class="error-code">
+
+             <%= statusCode || 404 %>
+
+        </h1>
+
+        <h2 class="error-title">
+            Oops! Page Not Found
+        </h2>
+
+        <p class="error-description">
+
+                <%= message %>
+
+        </p>
+
+        <div class="error-buttons">
+
+            <a href="/listings" class="btn auth-btn">
+
+                <i class="fa-solid fa-house"></i>
+
+                Explore Listings
+
+            </a>
+
+            <a href="/" class="btn btn-outline-dark">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Go Back
+
+            </a>
+
+        </div>
+
+    </div>
+
 </div>

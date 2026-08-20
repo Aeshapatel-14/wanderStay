@@ -1,0 +1,630 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container my-5">
+
+    <!-- PAGE HEADER -->
+
+    <div class="mb-4">
+
+       <h2 class="fw-bold">
+
+            <% if (booking.status === "Confirmed") { %>
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                Booking Confirmed
+
+            <% } else if (booking.status === "Cancelled") { %>
+
+                <i class="fa-solid fa-calendar-xmark"></i>
+
+                Booking Cancelled
+
+            <% } else if (booking.status === "Completed") { %>
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                 Booking Completed
+
+            <% } else { %>
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                    Booking Details
+
+            <% } %>
+
+        </h2>
+
+        <% if (booking.status === "Confirmed") { %>
+
+            <p class="text-muted">
+
+                Your booking is confirmed. Here are the complete details of your stay.
+
+            </p>
+
+        <% } else if (booking.status === "Cancelled") { %>
+
+            <p class="text-muted">
+
+                 This booking has been cancelled. You can still view its details below.
+
+            </p>
+
+        <% } else if (booking.status === "Completed") { %>
+
+            <p class="text-muted">
+
+                This stay has been completed. Here are your booking details.
+
+            </p>
+
+        <% } else { %>
+
+            <p class="text-muted">
+                View complete information about your stay.
+            </p>
+
+        <% } %>
+
+    </div>
+
+    <%# BOOKING CARD %>
+
+    <div class="card border-0 shadow-sm booking-details-card">
+
+        <div class="row g-0">
+
+
+            <%# LISTING IMAGE %>
+
+            <div class="col-md-4">
+
+                <% if (
+                    booking.listing &&
+                    booking.listing.image &&
+                    booking.listing.image.url
+                ) { %>
+
+                    <img
+                    
+                        src="<%= booking.listing.image.url %>"
+                        
+                        alt="<%= booking.listing.title %>"
+                    
+                        
+                        class="booking-details-image"/>
+
+
+                <% } else { %>
+
+                    <div class="booking-details-no-image">
+
+                        <i class="fa-solid fa-house"></i>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+            
+            <%# =====BOOKING INFORMATION===== %>
+
+            <div class="col-md-8">
+
+                <div class="card-body p-4">
+
+                    <% if (booking.listing) { %>
+
+                        <h3 class="fw-bold mb-2">
+
+                            <%= booking.listing.title %>
+
+                        </h3>
+
+
+                        <p class="text-muted mb-4">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <%= booking.listing.location %>,
+                            <%= booking.listing.country %>
+
+                        </p>
+
+                    <% } %>
+                
+                    <div class="mb-4">
+
+                        <% if (booking.status === "Confirmed") { %>
+
+                            <span class="badge bg-success">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                                Confirmed
+
+                            </span>
+
+                        <% } else if (booking.status === "Cancelled") { %>
+
+                            <span class="badge bg-danger">
+
+                                <i class="fa-solid fa-circle-xmark"></i>
+
+                                Cancelled
+
+                            </span>
+
+                        <% } else if (booking.status === "Completed") { %>
+
+                            <span class="badge bg-secondary">
+
+                                <i class="fa-solid fa-check-double"></i>
+
+                                Completed
+
+                            </span>
+
+                        <% } else { %>
+
+                            <span class="badge bg-secondary">
+
+                                <%= booking.status || "Unknown" %>
+
+                            </span>
+
+                        <% } %>
+
+                    </div>
+
+                 <%#========= BOOKING INFORMATION ==========%>   
+
+                    <div class="mb-4">
+
+                        <% if (booking.status === "Confirmed") { %>
+
+                            <p class="text-success mb-0">
+
+                                 <i class="fa-solid fa-circle-check"></i>
+
+                                     Your booking is confirmed. We look forward to hosting you!
+
+                            </p>
+
+                        <% } else if (booking.status === "Cancelled") { %>
+
+                            <p class="text-danger mb-0">
+
+                                <i class="fa-solid fa-circle-xmark"></i>
+
+                                    This booking has been cancelled and cannot be restored.
+
+                            </p>
+
+                        <% } else if (booking.status === "Completed") { %>
+
+                            <p class="text-muted mb-0">
+
+                                 <i class="fa-solid fa-check-double"></i>
+
+                                     Your stay has been completed.
+
+                             </p>
+
+                        <% } %>
+
+                    </div>
+
+                    <hr>
+
+                    <%# BOOKING DETAILS %>
+
+                    <div class="booking-details-grid">
+
+                        <%# CHECK-IN %>
+
+                        <div class="booking-detail-item">
+
+                            <small class="text-muted">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                Check-in
+
+                            </small>
+
+                            <strong>
+
+                                <%= new Date(
+                                    booking.checkIn
+                                ).toLocaleDateString(
+                                    "en-IN",
+                                    {
+                                        day: "numeric",
+                                        month: "short",
+                                        year: "numeric"
+                                    }
+                                ) %>
+
+                            </strong>
+
+                        </div>
+
+
+                        <%# CHECK-OUT %>
+
+                        <div class="booking-detail-item">
+
+                            <small class="text-muted">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                Check-out
+
+                            </small>
+
+                            <strong>
+
+                                <%= new Date(
+                                    booking.checkOut
+                                ).toLocaleDateString(
+                                    "en-IN",
+                                    {
+                                        day: "numeric",
+                                        month: "short",
+                                        year: "numeric"
+                                    }
+                                    
+                                ) %>
+
+                            </strong>
+
+                        </div>
+
+                        <%# GUEST %>
+
+                        <div class="booking-detail-item">
+
+                            <small class="text-muted">
+
+                                <i class="fa-solid fa-user-group"></i>
+
+                                Guests
+
+                            </small>
+
+                            <strong>
+
+                                <%= booking.guests %>
+
+                            </strong>
+
+                        </div>
+
+                        <%# NIGHTS %>
+
+                        <div class="booking-detail-item">
+
+                            <small class="text-muted">
+
+                                <i class="fa-solid fa-moon"></i>
+
+                                Stay
+
+                            </small>
+
+                            <strong>
+
+                                <%= booking.totalNights %>
+
+                                <%= booking.totalNights === 1
+                                    ? "night"
+                                    : "nights"
+                                %>
+
+                            </strong>
+
+                        </div>
+
+                        <%#=== PRICE PER NIGHT=== %>
+
+                        <% if (booking.listing) { %>
+
+                            <div class="booking-detail-item">
+
+                                <small class="text-muted">
+
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                                    Price / night
+
+                                </small>
+
+                                <strong>
+
+                                    ₹<%= booking.listing.price.toLocaleString(
+                                        "en-IN"
+                                    ) %>
+
+                                </strong>
+
+                            </div>
+
+                        <% } %>
+
+                      <%# BOOKED ON %>
+
+                        <div class="booking-detail-item">
+
+                            <small class="text-muted">
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                    Booked On
+
+                            </small>
+
+                                <strong>
+
+                                    <%= new Date(
+                                    booking.createdAt
+                                    )   
+                                        .toLocaleDateString(
+                                        "en-IN",
+                                        {
+                                             day: "numeric",
+                                            month: "short",
+                                            year: "numeric"
+                                        }
+                                    ) %>
+
+                                 </strong>
+
+                        </div>  
+
+                    </div>
+
+                <hr>
+
+            <%#==== PRICE BREAKDOWN ===== %>
+
+                <div class="booking-price-breakdown">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                         <span class="text-muted">
+                             <i class="fa-solid fa-indian-rupee-sign"></i>
+                                Price per night
+                        </span>
+
+                        <strong>
+                             ₹<%= booking.listing.price.toLocaleString("en-IN") %>
+                        </strong>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <span class="text-muted">
+                            <i class="fa-solid fa-moon"></i>
+                                Stay
+                        </span>
+
+                        <strong>
+                             <%= booking.totalNights %>
+                            <%= booking.totalNights === 1 ? "night" : "nights" %>
+                        </strong>
+
+                    </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <span class="fw-bold">
+                        Total Amount
+                    </span>
+
+                        <strong class="fs-5">
+
+                            ₹<%= booking.totalPrice.toLocaleString(
+                                "en-IN"
+                            ) %>
+                        </strong>
+                </div>
+            </div>
+        </div>
+                   
+         <%#===== BOOKING ID =====%>
+
+            <div class="booking-id mt-3">
+
+                <small class="text-muted">
+
+                    Booking ID
+
+                </small>
+
+                    <div class="fw-semibold">
+
+                        #<%= booking._id.toString()
+                            .slice(-8)
+                            .toUpperCase() %>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<%#  ACTIONS %>
+
+<div class="confirmation-actions">
+
+    <%# MY BOOKINGS %>
+
+    <a
+        href="/my-bookings"
+        class="btn auth-btn">
+
+        <i class="fa-solid fa-calendar-check"></i>
+
+        My Bookings
+
+    </a>
+
+    <%# VIEW LISTING %>
+
+    <% if (booking.listing) { %>
+
+        <a
+            href="/listings/<%= booking.listing._id %>"
+            class="btn btn-outline-secondary">
+
+            <i class="fa-solid fa-eye"></i>
+
+            View Listing
+
+        </a>
+
+    <% } %>
+
+
+    <%# CANCEL BOOKING %>
+
+    <% if (booking.status === "Confirmed") { %>
+
+        <button
+            type="button"
+            class="btn btn-outline-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#cancelBookingModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                    Cancel Booking
+
+        </button>
+
+    <% } %>
+
+    <% if (booking.status === "Cancelled") { %>
+
+        <span class="btn btn-outline-danger disabled">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+                Booking Cancelled
+
+        </span>
+
+    <% } else if (booking.status === "Completed") { %>
+
+        <span class="btn btn-outline-secondary disabled">
+
+            <i class="fa-solid fa-check-double"></i>
+
+                Stay Completed
+
+            </span>
+
+    <% } %>
+
+</div>
+
+</div>
+
+<%# CANCEL BOOKING MODAL %>
+
+<div
+    class="modal fade"
+    id="cancelBookingModal"
+    tabindex="-1"
+    aria-labelledby="cancelBookingModalLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title fw-bold"
+                    id="cancelBookingModalLabel">
+
+                    Cancel Booking?
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <p class="mb-2">
+
+                    Are you sure you want to cancel this booking?
+
+                </p>
+
+                <p class="text-muted small mb-0">
+
+                    Once cancelled, this booking cannot be restored.
+
+                </p>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Keep Booking
+
+                </button>
+
+
+                <form
+                    action="/my-bookings/<%= booking._id %>/cancel"
+                    method="POST"
+                    class="d-inline">
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Yes, Cancel Booking
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

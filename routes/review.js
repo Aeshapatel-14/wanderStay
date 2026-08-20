@@ -17,6 +17,16 @@ router.post("/",
   validateReview,
   wrapAsync(reviewController.createReview));
 
+
+// Update Review
+router.put(
+  "/:reviewId",
+  isLogedIn,
+  isReviewAuthor,
+  validateReview,
+  wrapAsync(reviewController.updateReview)
+);
+
 //delete review route
 router.delete
 ("/:reviewId",

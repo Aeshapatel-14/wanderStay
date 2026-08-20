@@ -29,15 +29,43 @@ module.exports.isOwner=async(req,res,next)=>{
         next();
 }
 
-module.exports.validateListing=(req,res,next)=>{
-   let {error}= listingSchema.validate(req.body);
+// module.exports.validateListing=(req,res,next)=>{
+//    let {error}= listingSchema.validate(req.body);
+//     if (error) {
+//      let errMsg=error.details.map((el)=>el.message).join(",");
+//   throw new ExpressError(400,errMsg);
+//   }else{
+//     next()
+//   }
+//   };
+
+module.exports.validateListing = (req, res, next) => {
+
+    console.log("VALIDATE LISTING HIT");
+
+    console.log("LISTING BODY:");
+    console.log(req.body);
+
+    let { error } = listingSchema.validate(req.body);
+
     if (error) {
-     let errMsg=error.details.map((el)=>el.message).join(",");
-  throw new ExpressError(400,errMsg);
-  }else{
-    next()
-  }
-  };
+
+        let errMsg =
+            error.details
+                .map((el) => el.message)
+                .join(",");
+
+        console.log("VALIDATION ERROR:", errMsg);
+
+        throw new ExpressError(400, errMsg);
+
+    } else {
+
+        console.log("VALIDATION PASSED");
+
+        next();
+    }
+};
 
 module.exports.validateReview=(req,res,next)=>{
    let {error}= reviewSchema.validate(req.body);

@@ -1,0 +1,264 @@
+/* ==========================================
+            WISHLIST PAGE
+========================================== */
+
+.wishlist-container{
+    margin:40px auto;
+}
+
+.wishlist-header{
+    margin-bottom:30px;
+}
+
+.wishlist-header h2{
+    font-weight:700;
+}
+
+.wishlist-header p{
+    color:#777;
+}
+
+.wishlist-empty{
+    max-width:500px;
+    margin:80px auto;
+    padding:50px 30px;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:var(--shadow-sm);
+}
+
+.wishlist-empty i{
+    font-size:4rem;
+    color:#ff385c;
+    margin-bottom:20px;
+}
+
+.wishlist-empty h3{
+    font-weight:700;
+}
+
+.wishlist-empty p{
+    color:#777;
+    margin:15px 0 25px;
+}
+
+/* ==========================
+        Responsive
+========================== */
+
+@media(max-width:768px){
+
+    .wishlist-container{
+        margin-top:25px;
+    }
+
+    .wishlist-header{
+        text-align:center;
+    }
+
+    .wishlist-empty{
+        padding:35px 20px;
+    }
+
+    .wishlist-empty i{
+        font-size:3rem;
+    }
+
+}
+
+/* ==========================================
+        SEARCH EMPTY STATE
+========================================== */
+
+.search-empty{
+
+    width: 100%;
+    max-width:620px;
+
+    margin:70px auto;
+
+    padding:50px 40px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    box-shadow:0 15px 40px rgba(0, 0, 0, .08);
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.search-empty:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+}
+
+.search-empty i{
+
+    font-size:4.5rem;
+
+    color:#ff385c;
+
+    margin-bottom:22px;
+
+}
+
+.search-empty h3{
+
+    font-size: 2rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.search-empty p{
+
+    color:#6c757d;
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+.search-empty .btn{
+
+    padding:14px 32px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+}
+
+.search-empty-wrapper{
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-empty strong{
+
+    color:#ff385c;
+
+}
+
+
+@media(max-width:768px){
+
+    .search-empty{
+
+        padding:35px 20px;
+
+        margin:50px auto;
+
+    }
+
+    .search-empty i{
+
+        font-size:3rem;
+
+    }
+
+}
+
+/* ==========================================
+        WISHLIST HEART ANIMATION
+========================================== */
+
+
+.wishlist-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.95);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    color:#555;
+
+    font-size:1.2rem;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    backdrop-filter:blur(8px);
+
+}
+
+.wishlist-btn i{
+
+    transition:.3s;
+
+}
+
+
+.wishlist-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+
+}
+
+.wishlist-btn.active{
+
+    color:#ff385c;
+
+    background:#fff2f4;
+
+}
+
+.wishlist-btn.active:hover{
+
+    background:#ffebef;
+
+}
+
+.wishlist-btn.animate {
+    animation: heartPop 0.35s ease;
+}
+
+@keyframes heartPop {
+
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.35);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}

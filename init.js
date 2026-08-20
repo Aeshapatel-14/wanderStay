@@ -7,16 +7,21 @@ const User = require("./models/user");
 const dbUrl = process.env.ATLASDB_URL;
 
 async function main() {
+  
   await mongoose.connect(dbUrl);
 
   const user = await User.findOne();
 
   const listingsWithOwner = initData.data.map((obj) => ({
     ...obj,
-    owner: user._id,
-    geometry: {
-      type: "Point",
-      coordinates: [77.1025, 28.7041],
+
+     owner: user._id,
+
+     geometry: {
+
+    type: "Point",
+
+    coordinates: [77.1025, 28.7041],
     },
   }));
 

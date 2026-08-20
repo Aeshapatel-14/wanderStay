@@ -5,50 +5,90 @@ const Schema = mongoose.Schema;
 
 
 const listingSchema = new mongoose.Schema({
-  title: {
-    type:String,
-    required:true,
-  },
-  description: String,
-  price: Number,
-  location: String,
-  country: String,
-  image:{                 
-    url:String,
-    filename:String,
-  },
-  category: {
-  type: String,
-  default: "new"
+    title: {
+      type:String,
+      required:true,
+    },
+      
+description: String,
+
+price: {
+    type: Number,
+    required: true,
+    min: 0
 },
-  reviews:[
-    {
-      type:Schema.Types.ObjectId,
-      ref:"Review",
+
+location: String,
+
+country: String,
+  
+
+    image:{ 
+
+      url:String,
+
+      filename:String,
+
     },
-  ],
-    owner:{
-      type:Schema.Types.ObjectId,
-      ref:"User",
+    category: {
+
+      type: String,
+
+      default: "new"
+
     },
-    geometry: {
-    type: {
-      type: String, // Don't do `{ location: { type: String } }`
-      enum: ['Point'], // 'location.type' must be 'Point'
-      required: true
-    },
-      coordinates: {
-      type: [Number],
-      required: true
-    }
-  }
+    reviews:[
+      {
+        type:Schema.Types.ObjectId,
+
+        ref:"Review",
+
+      },
+    ],
+      owner:{
+
+        type:Schema.Types.ObjectId,
+
+        ref:"User",
+      },
+
+      geometry: {
+
+        type: {
+          type: String, // Don't do `{ location: {  type: String } }`
+         enum: ['Point'], // 'location.type' must be 'Point'
+          required: true
+        },
+
+        coordinates: {
+
+        type: [Number],
+
+        required: true
+      }
+  },
+
+      averageRating: {
+        type: Number,
+        default: 0,
+      },
+
+      reviewCount: {
+        type: Number,
+        default: 0,
+      },
+      },
+       {
+    timestamps: true
 });
 
+      
 listingSchema.post("findOneAndDelete",async (listing) => {
  if (listing){
   await review.deleteMany({_id:{$in:listing.reviews}});
  }
 });
+
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;

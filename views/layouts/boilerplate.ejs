@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wanderlust</title>
+
+    <title>Wanderlust | Discover Amazing Places</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+        name="description"
+        content="Wanderlust - Discover beautiful stays, apartments, villas, resorts and unique travel experiences around the world.">
+
+    <meta
+        name="keywords"
+        content="Wanderlust, Airbnb Clone, Travel, Hotels, Villas, Apartments, Vacation Rentals">
+
+    <meta
+        name="author"
+        content="Aesha Patel">
+
+    <meta
+        name="robots"
+        content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Wanderlust">
+
+    <meta
+        property="og:description"
+        content="Find amazing places to stay around the world.">
+
+    <meta property="og:type" content="website">
+
+    <meta
+        property="og:image"
+        content="/images/logo.png">
+
+    <!-- Theme Color -->
+    <meta
+        name="theme-color"
+        content="#ff385c">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
@@ -17,28 +58,62 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- rating css -->
-     <link href="/css/rating.css" rel="stylesheet">
-     <!-- mapboxlink -->
-      <link href="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.css" rel="stylesheet">
+    <!-- Rating CSS -->
+    <link rel="stylesheet" href="/css/rating.css">
+
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.css" rel="stylesheet">
+
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.js"></script>
+
 </head>
 <body>
 
     <%- include("../includes/navbar.ejs") %>
 
-    <div class="main-content">
-        <div class="container mt-4">
-            <%- include("../includes/flash.ejs") %>
-            <%- body %>
-         </div>
-        </div>
+    
+<div class="main-content">
 
-     <%- include("../includes/footer.ejs") %>
+    <%- body %>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/script.js"></script>
+</div>
+
+<%- include("../includes/footer.ejs") %>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Flash Messages -->
+<%- include("../includes/flash.ejs") %>
+
+<script src="/js/validation.js"></script>
+
+<script src="/js/imagePreview.js"></script>
+
+<script src="/js/nav.js"></script>
+
+<script src="/js/taxToggle.js"></script>
+
+<script src="/js/loading.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="/js/booking.js"></script>
+
+
+<script src="/js/wishlist.js"></script>
+
+<script src="/js/reviews.js"></script>
+
+<script src="/js/script.js"></script>
+
 
 </body>
 </html>

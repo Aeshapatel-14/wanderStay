@@ -1,120 +1,563 @@
-<% layout("/layouts/boilerplate") %>
-<div class="container">
 
+<% layout("/layouts/boilerplate") %>
+
+<div class="container-fluid px-4 mt-3">
+
+  <!--======== FILTERS bar======== -->
   <div id="filters">
 
-  <a href="/listings"
-     class="filter <%= !category ? 'active' : '' %>">
-    <i class="fa-solid fa-border-all"></i>
-    <p>all</p>
-  </a>
+    <a href="/listings"
+       class="filter <%= !category ? 'active' : '' %>">
+      <i class="fa-solid fa-border-all"></i>
+      <p>All</p>
+    </a>
 
-  <a href="/listings?category=trending&search=<%= search || '' %>"
-   class="filter <%= category === 'trending' ? 'active' : '' %>">
-    <i class="fa-solid fa-fire"></i>
-    <p>trending</p>
-  </a>
+    <a href="/listings?category=trending&search=<%= search || '' %>"
+       class="filter <%= category === 'trending' ? 'active' : '' %>">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </a>
 
-  <a href="/listings?category=rooms&search=<%= search || '' %>"
-   class="filter <%= category === 'rooms' ? 'active' : '' %>">
-    <i class="fa-solid fa-bed"></i>
-    <p>rooms</p>
-  </a>
+    <a href="/listings?category=rooms&search=<%= search || '' %>"
+       class="filter <%= category === 'rooms' ? 'active' : '' %>">
+      <i class="fa-solid fa-bed"></i>
+      <p>Rooms</p>
+    </a>
 
-   <a href="/listings?category=iconic-cities&search=<%= search || '' %>"
-     class="filter <%= category === 'iconic-cities' ? 'active' : '' %>">
-    <i class="fa-solid fa-mountain-city"></i>
-    <p>iconic Cities</p>
-  </a>
+    <a href="/listings?category=iconic-cities&search=<%= search || '' %>"
+       class="filter <%= category === 'iconic-cities' ? 'active' : '' %>">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic Cities</p>
+    </a>
 
-  <a href="/listings?category=mountains&search=<%= search || '' %>"
-     class="filter <%= category === 'mountains' ? 'active' : '' %>">
-    <i class="fa-solid fa-mountain"></i>
-    <p>mountains</p>
-  </a>
+    <a href="/listings?category=mountains&search=<%= search || '' %>"
+       class="filter <%= category === 'mountains' ? 'active' : '' %>">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Mountains</p>
+    </a>
 
-  <a href="/listings?category=castles&search=<%= search || '' %>"
-     class="filter <%= category === 'castles' ? 'active' : '' %>">
-    <i class="fa-brands fa-fort-awesome"></i>
-    <p>castles</p>
-  </a>
+    <a href="/listings?category=castles&search=<%= search || '' %>"
+       class="filter <%= category === 'castles' ? 'active' : '' %>">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Castles</p>
+    </a>
 
-  <a href="/listings?category=amazing-pools&search=<%= search || '' %>"
-     class="filter <%= category === 'amazing-pools' ? 'active' : '' %>">
-    <i class="fa-solid fa-person-swimming"></i>
-    <p>pools</p>
-  </a>
+    <a href="/listings?category=amazing-pools&search=<%= search || '' %>"
+       class="filter <%= category === 'amazing-pools' ? 'active' : '' %>">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Pools</p>
+    </a>
 
-  <a href="/listings?category=new&search=<%= search || '' %>"
-     class="filter <%= category === 'new' ? 'active' : '' %>">
-    <i class="fa-solid fa-key"></i>
-    <p>new</p>
-  </a>
+    <a href="/listings?category=new&search=<%= search || '' %>"
+       class="filter <%= category === 'new' ? 'active' : '' %>">
+      <i class="fa-solid fa-key"></i>
+      <p>New</p>
+    </a>
 
-  <a href="/listings?category=beachfront&search=<%= search || '' %>"
-     class="filter <%= category === 'beachfront' ? 'active' : '' %>">
-    <i class="fa-solid fa-umbrella-beach"></i>
-    <p>beach</p>
-  </a>
+    <a href="/listings?category=beachfront&search=<%= search || '' %>"
+       class="filter <%= category === 'beachfront' ? 'active' : '' %>">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <p>Beach</p>
+    </a>
 
-  <a href="/listings?category=camping&search=<%= search || '' %>"
-     class="filter <%= category === 'camping' ? 'active' : '' %>">
-    <i class="fa-solid fa-campground"></i>
-    <p>camping</p>
-  </a>
+    <a href="/listings?category=camping&search=<%= search || '' %>"
+       class="filter <%= category === 'camping' ? 'active' : '' %>">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </a>
 
-  <a href="/listings?category=farms&search=<%= search || '' %>"
-     class="filter <%= category === 'farms' ? 'active' : '' %>">
-    <i class="fa-solid fa-cow"></i>
-    <p>farms</p>
-  </a>
+    <a href="/listings?category=farms&search=<%= search || '' %>"
+       class="filter <%= category === 'farms' ? 'active' : '' %>">
+      <i class="fa-solid fa-cow"></i>
+      <p>Farms</p>
+    </a>
 
-  <a href="/listings?category=arctic&search=<%= search || '' %>"
-     class="filter <%= category === 'arctic' ? 'active' : '' %>">
-    <i class="fa-solid fa-snowflake"></i>
-    <p>arctic</p>
-  </a>
+    <a href="/listings?category=arctic&search=<%= search || '' %>"
+       class="filter <%= category === 'arctic' ? 'active' : '' %>">
+      <i class="fa-solid fa-snowflake"></i>
+      <p>Arctic</p>
+    </a>
 
-  <!-- TAX TOGGLE -->
-  <div class="tax-toggle">
-    <div class="form-check form-switch">
-      <input class="form-check-input"
-             type="checkbox"
-             role="switch"
-             id="switchCheckDefault">
+    <a href="/listings?category=tiny-homes&search=<%= search || '' %>"
+       class="filter <%= category === 'tiny-homes' ? 'active' : '' %>">
+      <i class="fa-solid fa-house-chimney"></i>
+      <p>Tiny Homes</p>
+    </a>
 
-      <label class="form-check-label" for="switchCheckDefault">
-        Display total after taxes
-      </label>
-    </div>
-  </div>
+    <a href="/listings?category=forest&search=<%= search || '' %>"
+       class="filter <%= category === 'forest' ? 'active' : '' %>">
+      <i class="fa-solid fa-tree"></i>
+      <p>Forest</p>
+    </a>
 
-</div>
-  
-  <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 g-4 mt-3">
-    
-    <% for(let listing of allListings){ %>
-      <a href="/listings/<%= listing._id %>" class="listing-link">
-        <div class="col">
-        <div class="card">
-            <img 
-            src="<%= listing.image ? listing.image.url : '/images/default.jpg' %>" 
-            class="card-img-top listing-img" alt="listing_image">
-            <div class="card-img-overlay"></div>
-            <div class="card-body">
-              <p class="card-text">
-                <b><%= listing.title %></b><br>
-                &#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %>
-                <i class="tax-info">&nbsp;&nbsp; +15% GST</i>
-              </p>
+    <a href="/listings?category=luxury&search=<%= search || '' %>"
+       class="filter <%= category === 'luxury' ? 'active' : '' %>">
+      <i class="fa-solid fa-gem"></i>
+      <p>Luxury</p>
+    </a>
+
+    <a href="/listings?category=islands&search=<%= search || '' %>"
+       class="filter <%= category === 'islands' ? 'active' : '' %>">
+      <i class="fa-solid fa-water"></i>
+      <p>Islands</p>
+    </a>
+
+    <a href="/listings?category=pet-friendly&search=<%= search || '' %>"
+       class="filter <%= category === 'pet-friendly' ? 'active' : '' %>">
+      <i class="fa-solid fa-paw"></i>
+      <p>Pet Friendly</p>
+    </a>
+
+    <a href="/listings?category=eco-stay&search=<%= search || '' %>"
+       class="filter <%= category === 'eco-stay' ? 'active' : '' %>">
+      <i class="fa-solid fa-leaf"></i>
+      <p>Eco Stay</p>
+    </a>
+
+    <a href="/listings?category=sunrise-views&search=<%= search || '' %>"
+       class="filter <%= category === 'sunrise-views' ? 'active' : '' %>">
+      <i class="fa-solid fa-sun"></i>
+      <p>Sunrise Views</p>
+    </a>
+
+    <a href="/listings?category=art-homes&search=<%= search || '' %>"
+       class="filter <%= category === 'art-homes' ? 'active' : '' %>">
+      <i class="fa-solid fa-palette"></i>
+      <p>Art Homes</p>
+    </a>
+
+    <a href="/listings?category=night-views&search=<%= search || '' %>"
+       class="filter <%= category === 'night-views' ? 'active' : '' %>">
+      <i class="fa-solid fa-moon"></i>
+      <p>Night Views</p>
+    </a>
+
+    <a href="/listings?category=lakeside&search=<%= search || '' %>"
+       class="filter <%= category === 'lakeside' ? 'active' : '' %>">
+      <i class="fa-solid fa-ship"></i>
+      <p>Lakeside</p>
+    </a>
+
+   <!--======== GST Toggle button ========== -->
+        <div class="tax-toggle">
+
+            <div class="tax-text">
+
+                <i class="fa-solid fa-receipt"></i>
+
+                <div>
+                    <span>Total Price</span>
+                    <small>Includes GST & Taxes</small>
+                </div>
+
             </div>
-          </div>
+
+            <div class="form-check form-switch m-0">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="switchCheckDefault">
+            </div>
 
         </div>
-      </a>
+
+    </div>
+
+  <!--========= search ========= -->
+
+    <% if(search || category){ %>
+
+      <div class="search-result-bar">
+
+        <% if(search){ %>
+
+          <h5>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search:
+            "<%= search %>"
+         </h5>
+        <% } %>
+
+          <% if(category){ %>
+            <p>
+              Category:
+              <strong><%= category %></strong>
+            </p>
+          <% } %>
+
+          <small>
+            <%= allListings.length %> listing(s) found
+          </small>
+
+      </div> 
+
     <% } %>
 
-  </div>
+
+    <% if(search || category){ %>
+
+      <a
+        href="/listings"
+        class="clear-filters-btn">
+
+          <i class="fa-solid fa-filter-circle-xmark"></i>
+
+          Clear All Filters
+
+      </a>
+
+  <% } %>
+
+
+   <!-- ======== RECENTLY VIEWED ======== -->
+
+<div id="recentlyViewedSection" class="mb-5 d-none">
+
+    <h3 class="mb-4">
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        Recently Viewed
+    </h3>
+
+    <div class="recent-wrapper">
+
+      <button
+        id="recentPrev"
+        class="recent-arrow left">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+      </button>
+
+        <div
+          id="recentlyViewedContainer"
+           class="recent-slider">
+
+        </div>
+
+      <button
+        id="recentNext"
+        class="recent-arrow right">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+      </button>
+
+    </div>
+    
+</div>
+
+   <!-- ===========alllLISTINGS ============-->
+
+      <div class="row
+      row-cols-1
+      row-cols-sm-2
+      row-cols-md-3
+      row-cols-lg-4
+      row-cols-xl-5
+      g-4
+      mt-3">
+      <% if(allListings.length > 0){ %>
+
+      <% for(let listing of allListings){ %>
+
+        <div class="col">
+
+          <div class="card">
+
+          <!--========= IMAGE ============ -->
+
+            <div class="card-image-wrapper">
+
+             <a href="/listings/<%= listing._id %>" class="listing-link">
+
+                <img
+                   src="<%= listing.image ? listing.image.url : '/images/default.jpg' %>"
+                   class="card-img-top listing-img"
+                   alt="listing_image">
+
+                <div class="card-img-overlay"></div>
+
+             </a>
+
+  <!--========== Rating =========-->
+
+            <div class="rating-badge">
+
+              <% if (listing.reviewCount > 0) { %>
+
+                ⭐ <%= listing.averageRating.toFixed(1) %>
+
+                  (<%= listing.reviewCount %>)
+
+                    <% } else { %>
+
+                      ⭐ New
+
+              <% } %>
+
+            </div>
+
+  <!-- ========Guest Badge ======= -->
+              <% if (listing.averageRating >= 4.5 && listing.reviewCount >= 5) { %>
+
+                <div class="guest-badge">
+
+                  🏆 Guest Favorite
+
+                </div>
+
+               <% } %>
+
+  <!--========== Wishlist========== -->
+              <form
+                action="/users/wishlist/<%= listing._id %>"
+                method="POST"
+                class="wishlist-form"
+               data-id="<%= listing._id %>">
+
+              <input
+                type="hidden"
+                name="redirect"
+                value="/listings">
+
+
+              <button
+                type="submit"
+                class="wishlist-btn 
+                <%= wishlist.includes(listing._id.toString()) ? 'active' : '' %>">
+
+                <i class="<%= wishlist.includes(listing._id.toString()) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+
+              </button>
+
+            </form>
+
+        </div>
+
+  <!--========== CARD BODY========== -->
+        <a
+          href="/listings/<%= listing._id %>"
+          class="listing-link">
+
+          <div class="card-body">
+
+            <h6 class="listing-title">
+
+              <%= listing.title %>
+
+            </h6>
+
+            <p class="listing-location">
+
+              <i class="fa-solid fa-location-dot"></i>
+
+              <%= listing.location %>, <%= listing.country %>
+
+             </p>
+
+            <div class="price-row">
+
+              <span
+                class="listing-price"
+                data-price="<%= listing.price %>">
+                ₹<%= listing.price.toLocaleString("en-IN") %>
+
+              </span>
+
+              <span class="listing-night">
+                / night
+              </span>
+
+            </div>
+
+              <span class="tax-info">
+               +15% GST
+              </span>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+  <% } %>
+</div>
+
+<% } else { %>
+
+
+   <!-- ==== No listing found ===== -->
+ 
+<div class="col-12 d-flex justify-content-center">
+
+    <div class="search-empty text-center">
+
+        <i class="fa-solid fa-magnifying-glass-location"></i>
+
+        <h3>No Results Found</h3>
+
+        <p>
+           We couldn't find any listings matching
+
+          <strong>"<%= search || 'your search' %>"</strong>.
+
+          <br>
+
+          Try another city, country, or keyword.
+
+        </p>
+
+        <a href="/listings" class="btn auth-btn">
+
+            <i class="fa-solid fa-house"></i>
+
+            Explore All Listings
+
+        </a>
+
+    </div>
 
 </div>
+
+<% } %>
+
+<% if (totalPages > 1) { %>
+
+  <div class="d-flex justify-content-center mt-5">
+
+    <% if(totalListings > 0){ %>
+
+      <div class="pagination-info">
+
+        Showing
+
+        <strong><%= startListing %></strong>
+
+        -
+
+        <strong><%= endListing %></strong>
+
+        of
+
+        <strong><%= totalListings %></strong>
+
+        stays
+
+      </div>
+
+    <% } %>
+
+      <nav aria-label="Listings Pagination">
+
+          <ul class="pagination">
+
+  <!-- ======= Previous ======= -->
+
+              <li class="page-item <%= page === 1 ? 'disabled' : '' %>">
+
+                  <a
+                    class="page-link"
+                    href="/listings?page=<%= page - 1 %>&category=<%= category || '' %>&search=<%= search || '' %>">
+                      <i class="fa-solid fa-angle-left"></i>
+
+                  </a>
+
+              </li>
+
+  <!--====== Page Numbers ======-->
+
+              <%
+                let startPage = Math.max(1, page - 2);
+                let endPage = Math.min(totalPages, page + 2);
+              %>
+
+                <% if(startPage > 1){ %>
+
+                  <li class="page-item">
+                    <a class="page-link"
+                     href="/listings?page=1&category=<%= category || '' %>&search=<%= search || '' %>&">
+                       1
+                    </a>
+                  </li>
+
+                <% if(startPage > 2){ %>
+
+                  <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                  </li>
+
+                <% } %>
+
+              <% } %>
+
+                <% for(let i = startPage; i <= endPage; i++){ %>
+
+                  <li class="page-item <%= page === i ? 'active' : '' %>">
+
+                    <a class="page-link"
+                      href="/listings?page=<%= i %>&category=<%= category || '' %>&search=<%= search || '' %>">
+
+                      <%= i %>
+
+                     </a>
+
+                  </li>
+
+                 <% } %>
+
+                <% if(endPage < totalPages){ %>
+
+                  <% if(endPage < totalPages - 1){ %>
+
+                    <li class="page-item disabled">
+
+                      <span class="page-link">...</span>
+                    </li>
+
+                  <% } %>
+
+                    <li class="page-item">
+
+                      <a class="page-link"
+                         href="/listings?page=
+                        <%= totalPages %>&category=<%= category || '' %>&search=<%= search || '' %>">
+
+                        <%= totalPages %>
+
+                      </a>
+
+                    </li>
+                  <% } %>
+
+   <!--========== Next ========-->
+
+                    <li class="page-item <%= page === totalPages ? 'disabled' : '' %>">
+
+                      <a
+                        class="page-link"
+                        href="/listings?page=
+                        <%= page + 1 %>&category=
+                        <%= category || '' %>&search=<%= 
+                        search || '' %>&">
+
+                         <i class="fa-solid fa-angle-right"></i>
+
+                      </a>
+
+                    </li>
+
+               </ul>
+
+            </nav>
+
+        </div>
+
+    <% } %>
+
+</div>
+
 

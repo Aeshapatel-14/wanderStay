@@ -1,0 +1,122 @@
+<%- layout("/layouts/boilerplate") %>
+
+<div class="container wishlist-container">
+
+    <div class="wishlist-header">
+
+        <div class="wishlist-header">
+
+    <h2>
+
+        <i class="fa-solid fa-heart"></i>
+
+        My Wishlist
+
+    </h2>
+
+    <p>
+
+        Your saved places all in one place.
+
+    </p>
+
+</div>
+
+    <% if (wishlist.length === 0) { %>
+
+        <div class="wishlist-empty text-center">
+
+            <i class="fa-regular fa-heart"></i>
+
+            <h3>Your wishlist is empty</h3>
+
+            <p>
+                Save your favourite stays and they'll appear here.
+            </p>
+
+            <a href="/listings" class="btn auth-btn">
+
+                Explore Listings
+
+            </a>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="row
+                    row-cols-1
+                    row-cols-sm-2
+                    row-cols-md-3
+                    row-cols-lg-4
+                    g-4">
+
+            <% wishlist.forEach(listing => { %>
+
+                <div class="col">
+
+                    <div class="card">
+
+                        <div class="card-image-wrapper">
+
+                            <a href="/listings/<%= listing._id %>" class="listing-link">
+
+                                <img
+                                    src="<%= listing.image.url %>"
+                                    class="card-img-top listing-img"
+                                    alt="listing image">
+
+                                <div class="card-img-overlay"></div>
+
+                            </a>
+
+                        </div>
+
+                        <a href="/listings/<%= listing._id %>" class="listing-link">
+
+                            <div class="card-body">
+
+                                <h6 class="listing-title">
+                                    <%= listing.title %>
+                                </h6>
+
+                                <p class="listing-location">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    <%= listing.location %>,
+                                    <%= listing.country %>
+
+                                </p>
+
+                                <div class="price-row">
+
+                                    <span class="listing-price">
+
+                                        ₹<%= listing.price.toLocaleString("en-IN") %>
+
+                                    </span>
+
+                                    <span class="listing-night">
+
+                                        / night
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>

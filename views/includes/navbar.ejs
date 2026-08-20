@@ -1,82 +1,181 @@
 <nav class="navbar navbar-expand-md sticky-top custom-navbar">
+
   <div class="container-fluid">
 
-    <!-- LEFT -->
-    <a class="navbar-brand fw-bold text-danger" href="/listings">
-      <i class="fa-solid fa-compass"></i> Airbib
+    <!--============= LEFT ============= -->
+    <a class="navbar-brand brand" href="/listings">
+
+      <div class="brand-logo">
+
+        <i class="fa-solid fa-compass"></i>
+
+      </div>
+
+      <div class="brand-text">
+
+        <span class="brand-title">WanderStay</span>
+
+        <small>Find your perfect stay</small>
+
+      </div>
+
     </a>
 
-    <button 
-      class="navbar-toggler" 
-      type="button" 
-      data-bs-toggle="collapse" 
-      data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+        <span class="navbar-toggler-icon"></span>
 
-      <!-- CENTER SEARCH -->
-      <div class="mx-auto">
-      <form action="/listings" method="GET" class="search-bar">
+      </button>
 
-      <input 
-      type="text" 
-      name="search" 
-      placeholder="Anywhere"
-      class="search-input"
-      />
+      <div class="collapse navbar-collapse"id="navbarNav">
 
-      <span class="divider">|</span>
+      <!---============= CENTER SEARCH ============ -->
 
-      <input 
-      type="text" 
-      placeholder="Any week"
-      onfocus="(this.type='date')"
-      class="search-input"
-      />
 
-    <span class="divider">|</span>
+      <div class="search-wrapper mx-auto">
 
-    <input 
-      type="text" 
-      placeholder="Add guests"
-      class="search-input"
-    />
+         <form action="/listings" method="GET" class="search-bar" autocomplete="off">
 
-    <button type="submit" class="search-btn">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
+            <div class="search-field">
 
-  </form>
-</div>
+              <i class="fa-solid fa-location-dot search-icon"></i>
+
+              <input
+                type="text"
+                name="search"
+                value="<%= search %>"
+                placeholder="Search destinations..."
+                class="search-input search-location"
+                autocomplete="off"
+                spellcheck="false"
+                required>
+
+                  <div id="searchSuggestions" class="search-suggestions"></div>
+
+                    <% if(search){ %>
+
+                      <a
+                         href="/listings"
+                         class="clear-search">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                      </a>
+
+                    <% } %>
+
+                  </div>
+
+                    <span class="divider">|</span>
+
+                      <div class="search-field">
+
+                        <i class="fa-regular fa-calendar search-icon"></i>
+
+                        <input
+                          type="text"
+                          placeholder="Check in"
+                          onfocus="this.type='date'"
+                          class="search-input search-date">
+                      </div>
+
+                    <span class="divider">|</span>
+
+                      <div class="search-field">
+
+                        <i class="fa-solid fa-user-group search-icon"></i>
+
+                           <input
+                              type="text"
+                               placeholder="Guests"
+                              class="search-input search-guests">
+
+                       </div>
+        
+                        <button
+                            type="submit"
+                            class="search-btn"
+                            id="searchBtn">
+
+                              <i class="fa-solid fa-magnifying-glass"></i>
+
+                        </button>
+            </form>
+        </div>
           
+
+      <!--============ RIGHT================ -->
       
+    <div class="navbar-right">
 
-      <!-- RIGHT -->
-      <div class="d-flex align-items-center gap-3">
+      <a class="nav-link fw-semibold" href="/listings/new">
 
-        <a class="nav-link fw-semibold" href="/listings/new">
-          Airbib your home
-        </a>
+        <i class="fa-solid fa-house"></i> &nbsp; Become a Host
 
-        <!-- PROFILE -->
-        <div class="profile-menu">
-          <i class="fa-solid fa-bars"></i>
-          <div class="profile-icon"></div>
+      </a>
+
+    <button class="globe-btn">
+
+      <i class="fa-solid fa-globe"></i>
+
+    </button>
+
+    <!-- ================PROFILE============== -->
+    <div class="profile-menu">
+
+      <div class="profile-icon">
+
+        <i class="fa-solid fa-user"></i>
+
+      </div>
+
+       <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
 
           <div class="dropdown-menu-custom">
 
-    <% if(!locals.currUser){ %>
-    <a href="/users/login">Login</a>
-    <a href="/users/signup">Sign up</a>
-    <% } else { %>
-    <a href="/users/logout">Logout</a>
-    <% } %>
-    </div>
-    </div>
-  </div>
+            <% if(!currUser){ %>
 
+              <a href="/users/login">
+
+                <i class="fa-solid fa-right-to-bracket"></i>&nbsp; Login
+
+              </a>
+
+              <a href="/users/signup">
+
+                <i class="fa-solid fa-user-plus"></i>&nbsp; Sign Up
+
+              </a>
+
+            <% } else { %>
+
+              <a href="/users/wishlist">
+
+                <i class="fa-solid fa-heart"></i>&nbsp; My Wishlist
+
+              </a>
+
+              <a href="/my-bookings">
+                <i class="fa-solid fa-calendar-check"></i>&nbsp; My Bookings
+              </a>
+
+              <a href="/users/logout">
+
+                <i class="fa-solid fa-right-from-bracket"></i>&nbsp; Logout
+            
+              </a>
+
+            <% } %>
+
+        </div>
+      </div>
     </div>
-  </div>
+   </div>
 </nav>

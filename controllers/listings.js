@@ -1,35 +1,144 @@
 const Listing= require("../models/listing");
+const User = require("../models/user");
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken=process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken});
 
 // INDEX
   module.exports.index = async (req, res) => {
-  let { category, search } = req.query;
 
-  let filter = {};
+      let {
+        category,
+        search,
+        page,
+    } = req.query;
 
+
+    page = parseInt(page) || 1;
+
+    if (page < 1) {
+      page = 1;
+    }
+
+    search = search?.trim();
+
+
+    const limit = 10;
+    const skip = (page - 1) * limit; 
+    
+    let filter = {};
+
+    
   // category filter
-  if (category) {
-    filter.category = category;
-  }
+    if (category) {
+      filter.category = category;
+     }
 
   // search filter
-  if (search) {
+  if (search && search.length > 0) {
+
     filter.$or = [
-      { location: { $regex: search, $options: "i" } },
-      { country: { $regex: search, $options: "i" } }
+
+        {
+          title: {
+           $regex: search,
+           $options: "i"
+          }
+        },
+
+        {
+            location: {
+                $regex: search,
+                $options: "i"
+            }
+        },
+
+        {
+            country: {
+                $regex: search,
+                $options: "i"
+            }
+        }
+
     ];
-  }
 
-  const allListings = await Listing.find(filter);
+}
 
-  res.render("listings/index", { allListings, category, search });
+  const allListings = await Listing.find(filter)
+    .skip(skip)
+    .limit(limit);
+
+  const totalListings = await Listing.countDocuments(filter);
+
+  const totalPages = Math.ceil(totalListings / limit);
+
+  const startListing = totalListings === 0 ? 0 : skip + 1;
+
+  const endListing = Math.min(skip + limit, totalListings);
+
+    let wishlist = [];
+
+    if (req.user) {
+      const user = await User.findById(req.user._id);
+      wishlist = user.wishlist.map(item => item.toString());
+    }
+
+    res.render("listings/index", {
+   
+      allListings,
+
+      category,
+
+      search,
+
+      wishlist,
+
+      page,
+
+      limit,
+
+      totalPages,
+
+      startListing,
+
+      endListing,
+
+      totalListings,
+
+
+    });
 };
+
+  
 
 // NEW
 module.exports.renderNewForm=(req, res) => {
   res.render("listings/new.ejs");
+};
+
+//recentyly view
+
+module.exports.getRecentListings = async (req, res) => {
+
+    const { ids } = req.body;
+
+    if (!ids || !Array.isArray(ids)) {
+        return res.json([]);
+    }
+
+    const listings = await Listing.find({
+        _id: { $in: ids }
+    }).select("title price location image");
+
+    // Keep same order as localStorage
+    const orderedListings = ids
+        .map(id =>
+            listings.find(item => item._id.toString() === id)
+        )
+        .filter(Boolean);
+
+    res.json(orderedListings);
+
 };
 
 // show
@@ -43,12 +152,104 @@ module.exports.showListing=async (req, res) => {
     },
   })
   .populate("owner");
+
   if(!listing){
+
     req.flash("error","Your listing request dose not exit!");
-    return res.redirect("/listings");
+
+        return res.redirect("/listings");
+
+    }
+
+    // ======================================
+// SIMILAR LISTINGS
+// ======================================
+
+const similarListings = await Listing.aggregate([
+
+  {
+    $match: {
+      _id: { $ne: listing._id }
+    }
+  },
+
+  {
+    $addFields: {
+
+      similarityScore: {
+
+        $add: [
+
+          // Same location = 3 points
+          {
+            $cond: [
+              { $eq: ["$location", listing.location] },
+              3,
+              0
+            ]
+          },
+
+          // Same category = 2 points
+          {
+            $cond: [
+              { $eq: ["$category", listing.category] },
+              2,
+              0
+            ]
+          },
+
+          // Same country = 1 point
+          {
+            $cond: [
+              { $eq: ["$country", listing.country] },
+              1,
+              0
+            ]
+          }
+
+        ]
+
+      }
+
+    }
+
+  },
+
+  {
+    $match: {
+      similarityScore: { $gt: 0 }
+    }
+  },
+
+  {
+    $sort: {
+      similarityScore: -1,
+      averageRating: -1
+    }
+  },
+
+  {
+    $limit: 8
   }
-  res.render("listings/show.ejs", { listing });
-}
+
+]);
+
+    let isWishlisted = false;
+
+    if (req.user) {
+        const user = await User.findById(req.user._id);
+
+        const wishlist = user.wishlist.map(item => item.toString());
+
+        isWishlisted = wishlist.includes(listing._id.toString());
+ 
+    }
+        res.render("listings/show.ejs", {
+            listing,
+            isWishlisted,
+            similarListings,
+        });    
+    };
 
 // CREATE
 module.exports.createListing=async (req, res, next) => { 
@@ -123,4 +324,72 @@ module.exports.deleteListing=async (req, res) => {
   await Listing.findByIdAndDelete(id);
   req.flash("success","New Listing deleted!");
   res.redirect("/listings");
+};
+
+module.exports.searchSuggestions = async (req, res) => {
+
+    const query = req.query.q?.trim();
+
+    if (!query) {
+        return res.json([]);
+    }
+
+    const listings = await Listing.find({
+
+        $or: [
+
+            {
+                title: {
+                    $regex: query,
+                    $options: "i"
+                }
+            },
+
+            {
+                location: {
+                    $regex: query,
+                    $options: "i"
+                }
+            },
+
+            {
+                country: {
+                    $regex: query,
+                    $options: "i"
+                }
+            }
+
+        ]
+
+    }).limit(6);
+
+    const suggestions = [];
+
+    listings.forEach((listing) => {
+
+        if (
+            listing.title &&
+            !suggestions.includes(listing.title)
+        ) {
+            suggestions.push(listing.title);
+        }
+
+        if (
+            listing.location &&
+            !suggestions.includes(listing.location)
+        ) {
+            suggestions.push(listing.location);
+        }
+
+        if (
+            listing.country &&
+            !suggestions.includes(listing.country)
+        ) {
+            suggestions.push(listing.country);
+        }
+
+    });
+
+    res.json(suggestions.slice(0, 6));
+
 };

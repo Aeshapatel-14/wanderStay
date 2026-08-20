@@ -1,0 +1,97 @@
+
+
+:root {
+
+  /* ==========================
+         BRAND COLORS
+    ========================== */
+
+  --primary: #FF385C;
+  --primary-hover: #E31C5F;
+  --secondary: #00A699;
+  --accent: #FC642D;
+
+  /* ==========================
+        BACKGROUND COLORS
+  ========================== */
+
+  --bg: #FFFFFF;
+  --bg-secondary: #F7F7F7;
+  --bg-light: #FAFAFA;
+  --bg-dark: #222222;
+
+  /* ==========================
+        TEXT COLORS
+  ========================== */
+
+  --text-dark: #222222;
+  --text: #484848;
+  --text-light: #717171;
+  --text-white: #FFFFFF;
+
+  /* ==========================
+        BORDER COLORS
+  ========================== */
+
+  --border: #DDDDDD;
+  --border-light: #EBEBEB;
+
+  /* ==========================
+        STATUS COLORS
+  ========================== */
+
+  --success: #2ECC71;
+  --warning: #F4B400;
+  --danger: #FF385C;
+  --info: #4285F4;
+
+  /* ==========================
+        SHADOWS
+  ========================== */
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+
+  --shadow-md: 0 6px 20px rgba(0,0,0,.12);
+
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.18);
+
+  /* ==========================
+        BORDER RADIUS
+  ========================== */
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-circle: 50%;
+
+  /* ==========================
+        TRANSITIONS
+  ========================== */
+
+  --transition-fast: .2s ease;
+  --transition: .3s ease;
+  --transition-slow: .45s ease;
+
+  /* ==========================
+        FONT WEIGHTS
+  ========================== */
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ==========================
+        SPACING
+  ========================== */
+
+  --space-xs: .25rem;
+  --space-sm: .5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+}

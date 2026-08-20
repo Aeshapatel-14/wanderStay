@@ -9,6 +9,13 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+   // Wishlist
+  wishlist: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Listing",
+    },
+  ],
 });
 
 
