@@ -121,7 +121,7 @@
                 Hosted by
 
                 <strong>
-                    <%= listing.owner.username %>
+                    <%= listing.owner ? listing.owner.username : "Unknown User" %>
                 </strong>
 
             </h5>
@@ -508,7 +508,7 @@
     </p>
 <!-- ================= OWNER ACTIONS ================= -->
 
-    <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
+    <% if(currUser && listing.owner && listing.owner._id.equals(currUser._id)){ %>
 
         <div class="btns">
 
