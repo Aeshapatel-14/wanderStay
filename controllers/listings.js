@@ -5,6 +5,110 @@ const mapToken=process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken});
 
 
+  module.exports.index = async (req, res) => {
+
+      let {
+        category,
+        search,
+        page,
+    } = req.query;
+
+
+    page = parseInt(page) || 1;
+
+    if (page < 1) {
+      page = 1;
+    }
+
+    search = search?.trim();
+
+
+    const limit = 10;
+    const skip = (page - 1) * limit; 
+    
+    let filter = {};
+
+    
+  // category filter
+    if (category) {
+      filter.category = category;
+     }
+
+  // search filter
+  if (search && search.length > 0) {
+
+    filter.$or = [
+
+        {
+          title: {
+           $regex: search,
+           $options: "i"
+          }
+        },
+
+        {
+            location: {
+                $regex: search,
+                $options: "i"
+            }
+        },
+
+        {
+            country: {
+                $regex: search,
+                $options: "i"
+            }
+        }
+
+    ];
+
+}
+
+  const allListings = await Listing.find(filter)
+    .skip(skip)
+    .limit(limit);
+
+  const totalListings = await Listing.countDocuments(filter);
+
+  const totalPages = Math.ceil(totalListings / limit);
+
+  const startListing = totalListings === 0 ? 0 : skip + 1;
+
+  const endListing = Math.min(skip + limit, totalListings);
+
+    let wishlist = [];
+
+    if (req.user) {
+      const user = await User.findById(req.user._id);
+      wishlist = user.wishlist.map(item => item.toString());
+    }
+
+    res.render("listings/index", {
+   
+      allListings,
+
+      category,
+
+      search,
+
+      wishlist,
+
+      page,
+
+      limit,
+
+      totalPages,
+
+      startListing,
+
+      endListing,
+
+      totalListings,
+
+
+    });
+};
+
 // NEW
 module.exports.renderNewForm=(req, res) => {
   res.render("listings/new.ejs");
