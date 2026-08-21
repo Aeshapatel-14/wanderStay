@@ -1,40 +1,32 @@
+require("dotenv").config();
 
 const mongoose = require("mongoose");
 const Listing = require("../models/listing.js");
 const initData = require("./data.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = process.env.ATLASDB_URL;
 
-main()
-    .then(() => {
-        console.log("connected to DB");
-      })
+async function main() {
+  await mongoose.connect(MONGO_URL);
+  console.log("connected to Atlas DB");
 
-    .catch((err) => {
-      console.log(err);
-    });
+  await Listing.deleteMany({});
 
-    async function main() {
-      await mongoose.connect(MONGO_URL);
+  const data = initData.data.map((obj) => ({
+    ...obj,
+    owner: "69d13e28daf51948b4e69ea5",
+    geometry: {
+      type: "Point",
+      coordinates: [77.1025, 28.7041]
     }
+  }));
 
-// init DB
-    const initDB = async () => {
-       await Listing.deleteMany({});
+  await Listing.insertMany(data);
 
-      initData.data = initData.data.map((obj)=>({
-      ...obj,
-      owner:"69d13e28daf51948b4e69ea5",
+  console.log("data was initialized");
+  await mongoose.connection.close();
+}
 
-      geometry: {
-        type: "Point",
-        coordinates: [77.1025, 28.7041] 
-      }
-    }));
- 
-
-    await Listing.insertMany(initData.data);
-      console.log("data was initialized");
-      };
-
-  initDB();
+main().catch((err) => {
+  console.log(err);
+});

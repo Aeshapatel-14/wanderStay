@@ -50,7 +50,7 @@
               <input
                 type="text"
                 name="search"
-                value="<%= search %>"
+                value="<%= typeof search !== 'undefined' ? search : '' %>"
                 placeholder="Search destinations..."
                 class="search-input search-location"
                 autocomplete="off"
