@@ -110,3 +110,161 @@ button:disabled {
     width: 1rem;
     height: 1rem;
 }
+
+
+
+/* ==========================================
+        GLOBAL PAGE LOADER
+========================================== */
+
+#pageLoader {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: #ffffff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 999999;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+
+}
+
+
+/* Loader content */
+
+.loader-content {
+
+    text-align: center;
+
+}
+
+
+/* WanderStay logo */
+
+.loader-logo {
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+/* Spinner */
+
+.loader-spinner {
+
+    width: 45px;
+
+    height: 45px;
+
+    border: 4px solid #eeeeee;
+
+    border-top-color: #222222;
+
+    border-radius: 50%;
+
+    margin: 0 auto 18px;
+
+    animation: wanderStaySpin 0.8s linear infinite;
+
+}
+
+
+/* Loading text */
+
+.loader-content p {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #777;
+
+}
+
+
+/* Hide loader */
+
+#pageLoader.loader-hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+
+/* Spinner animation */
+
+@keyframes wanderStaySpin {
+
+    from {
+
+        transform: rotate(0deg);
+
+    }
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================
+        IMAGE LOADING EFFECT
+========================================== */
+
+img {
+
+    transition:
+        filter 0.5s ease,
+        opacity 0.5s ease;
+
+}
+
+
+/* Image not loaded */
+
+img:not([src]),
+img.loading {
+
+    filter: blur(15px);
+
+    opacity: 0.7;
+
+}
+
+
+/* Loaded image */
+
+img.loaded {
+
+    filter: blur(0);
+
+    opacity: 1;
+
+}

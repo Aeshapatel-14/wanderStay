@@ -192,3 +192,86 @@ if (searchForm) {
     });
 
 }
+
+/* ==========================================
+        GLOBAL PAGE LOADER
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const pageLoader = document.getElementById("pageLoader");
+
+    if (!pageLoader) return;
+
+    document.body.classList.add("page-loading");
+
+  // ==============================
+    // IMAGE LOADING
+    // ==============================
+
+    const images = Array.from(document.images);
+
+    const imagePromises = images.map((img) => {
+
+        img.classList.add("loading");
+
+        return new Promise((resolve) => {
+
+            const finishLoading = () => {
+
+                img.classList.remove("loading");
+
+                img.classList.add("loaded");
+
+                resolve();
+
+            };
+
+            if (img.complete) {
+
+                finishLoading();
+
+            } else {
+
+                img.addEventListener(
+                    "load",
+                    finishLoading,
+                    { once: true }
+                );
+
+                img.addEventListener(
+                    "error",
+                    finishLoading,
+                    { once: true }
+                );
+
+            }
+
+        });
+
+    });
+
+
+
+    // Wait for all images
+    Promise.all(imagePromises).then(() => {
+
+        // Small delay for smooth animation
+        setTimeout(() => {
+
+            document.body.classList.remove("page-loading");
+
+            pageLoader.classList.add("loader-hidden");
+
+            // Remove loader after animation
+            setTimeout(() => {
+
+                pageLoader.remove();
+
+            }, 600);
+
+        }, 200);
+
+    });
+
+});
